@@ -12,10 +12,10 @@ import lexer.TokenType
 class Parser(tokens: Sequence<TokenType>) {
 
     private val tokenIterator = tokens.iterator()
-    private var currentToken: TokenType? = tokenIterator.next()
+    private var currentToken: TokenType? = if (tokenIterator.hasNext()) tokenIterator.next() else null
 
     fun parse(): Node {
-        checkNotNull(currentToken) { "Not input provided" }
+        checkNotNull(currentToken) { "Invalid syntax. No input" }
 
         val result = expression()
 

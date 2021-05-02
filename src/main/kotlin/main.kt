@@ -3,7 +3,7 @@ import lexer.Lexer
 import parser.Parser
 
 fun main(args: Array<String>) {
-    val lexer = Lexer("(1 + 2) * 3")
+    val lexer = Lexer("1")
     val tokens = lexer.generateTokens()
 
     val parser = Parser(tokens)

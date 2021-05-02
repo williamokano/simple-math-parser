@@ -3,9 +3,9 @@ package lexer
 class Lexer(text: String) {
 
     private val textIterator = text.iterator()
-    private var currentChar: Char? = textIterator.nextChar()
+    private var currentChar: Char? = if (textIterator.hasNext()) textIterator.nextChar() else null
 
-    fun advance() {
+    private fun advance() {
         currentChar = if (textIterator.hasNext())
             textIterator.nextChar()
         else
