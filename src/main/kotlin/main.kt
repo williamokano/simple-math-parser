@@ -1,9 +1,16 @@
+import interpreter.Interpreter
 import lexer.Lexer
+import parser.Parser
 
 fun main(args: Array<String>) {
-    val lexer = Lexer("1 + 2 * 3 + (4 * 5) / 2 + 1.0 - 0.1 + .1 * 2.")
+    val lexer = Lexer("(1 + 2) * 3")
+    val tokens = lexer.generateTokens()
 
-    lexer.generateTokens().forEach { token ->
-        println(token)
-    }
+    val parser = Parser(tokens)
+    val tree = parser.parse()
+
+    val interpreter = Interpreter()
+    val value = interpreter.visit(tree)
+
+    println(value)
 }

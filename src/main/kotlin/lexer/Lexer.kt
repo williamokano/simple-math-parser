@@ -16,21 +16,37 @@ class Lexer(text: String) {
         while (currentChar.isNotNull()) {
             when {
                 isWhiteSpace(currentChar!!) -> {
-
+                    advance()
                 }
                 isDigitOrDecimalPoint(currentChar!!) -> {
                     yield(generateNumber())
                 }
-                currentChar == '+' -> yield(AddTokenType)
-                currentChar == '-' -> yield(SubtractionTokenType)
-                currentChar == '*' -> yield(MultiplyTokenType)
-                currentChar == '/' -> yield(DivisionTokenType)
-                currentChar == '(' -> yield(LeftParenthesesTokenType)
-                currentChar == ')' -> yield(RightParenthesesTokenType)
+                currentChar == '+' -> {
+                    advance()
+                    yield(AddTokenType)
+                }
+                currentChar == '-' -> {
+                    advance()
+                    yield(SubtractionTokenType)
+                }
+                currentChar == '*' -> {
+                    advance()
+                    yield(MultiplyTokenType)
+                }
+                currentChar == '/' -> {
+                    advance()
+                    yield(DivisionTokenType)
+                }
+                currentChar == '(' -> {
+                    advance()
+                    yield(LeftParenthesesTokenType)
+                }
+                currentChar == ')' -> {
+                    advance()
+                    yield(RightParenthesesTokenType)
+                }
                 else -> throw IllegalArgumentException("Invalid character '$currentChar'")
             }
-
-            advance()
         }
     }
 
